@@ -21,7 +21,6 @@ DoGLevels = levels - 1;
 DoGPyramid = zeros(H, W, DoGLevels);
 
 for l = 2:levels
-    DoGPyramid(:, :, l - 1) = GaussianPyramid(:, :, l) - GaussianPyramid(:, :, l - 1);
+    DoGPyramid(:, :, l - 1) = GaussianPyramid(:, :, l) - 
 end 
 
-save('DoGPyramid.mat');

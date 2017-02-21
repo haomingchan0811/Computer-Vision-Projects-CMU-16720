@@ -10,6 +10,12 @@ function [GaussianPyramid] = createGaussianPyramid(im, sigma0, k, levels)
 % outputs
 % A matrix of grayscale images of size (size(im),numel(levels))
 
+% % test
+% im = imread('../data/model_chickenbroth.jpg');
+% sigma0 = 1;
+% k = sqrt(2);
+% levels = [-1, 0, 1, 2, 3, 4];
+
 im = im2double(im);
 if size(im,3)==3
     im= rgb2gray(im);
@@ -21,3 +27,6 @@ for i = 1:length(levels)
     h = fspecial('gaussian',floor(3*sigma_*2)+1,sigma_);
     GaussianPyramid(:,:,i) = imfilter(im,h);
 end
+
+% % test
+% save('GaussianPyramid.mat');
