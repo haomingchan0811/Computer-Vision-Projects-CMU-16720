@@ -1,0 +1,6 @@
+im = imread('../data/model_chickenbroth.jpg');
+sigma0 = 1;
+k = sqrt(2);
+levels = [-1, 0, 1, 2, 3, 4];
+[th_r, th_contrast] = deal(12, 0.03);
+DoGdetector(im, sigma0, k, levels, th_contrast, th_r)

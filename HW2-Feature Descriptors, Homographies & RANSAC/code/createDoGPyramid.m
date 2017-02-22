@@ -9,19 +9,22 @@ function [DoGPyramid, DoGLevels] = createDoGPyramid(GaussianPyramid, levels)
 %               created by differencing the Gaussian Pyramid input
 
 
-% test
-load('GaussianPyramid.mat');
-levels = size(GaussianPyramid, 3);
+% % test
+% load('GaussianPyramid.mat');
+% levels = [-1, 0, 1, 2, 3, 4];
 
-% fectch dimention
+% fectch dimension
 [H, W] = deal(size(GaussianPyramid, 1), size(GaussianPyramid, 2));
 
-% initialize DoG matrix
-DoGLevels = levels - 1;
-DoGPyramid = zeros(H, W, DoGLevels);
+% initialize matries
+DoGLevels = zeros(length(levels)-1, 1);
+DoGPyramid = zeros(H, W, length(DoGLevels));
 
-for l = 2:levels
-    DoGPyramid(:, :, l - 1) = GaussianPyramid(:, :, l) - GaussianPyramid(:, :, l - 1);
+for l = 2:length(levels)
+    DoGPyramid(:,:,l - 1) = GaussianPyramid(:,:,l) - GaussianPyramid(:,:,l - 1);
+    DoGLevels(l - 1) = levels(l);
 end 
 
-save('DoGPyramid.mat');
+% save('DoGPyramid.mat');
+% save('DoGLevels.mat');
+

@@ -17,15 +17,15 @@ function [GaussianPyramid] = createGaussianPyramid(im, sigma0, k, levels)
 % levels = [-1, 0, 1, 2, 3, 4];
 
 im = im2double(im);
-if size(im,3)==3
-    im= rgb2gray(im);
+if size(im, 3) == 3
+    im = rgb2gray(im);
 end
 
-GaussianPyramid = zeros([size(im),length(levels)]);
+GaussianPyramid = zeros([size(im), length(levels)]);
 for i = 1:length(levels)
-    sigma_ = sigma0*k^levels(i);
-    h = fspecial('gaussian',floor(3*sigma_*2)+1,sigma_);
-    GaussianPyramid(:,:,i) = imfilter(im,h);
+    sigma_ = sigma0 * k^levels(i);
+    h = fspecial('gaussian',floor(3 * sigma_ * 2) + 1, sigma_);
+    GaussianPyramid(:,:,i) = imfilter(im, h);
 end
 
 % % test

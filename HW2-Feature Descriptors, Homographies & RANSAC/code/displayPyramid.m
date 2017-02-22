@@ -3,7 +3,7 @@ function displayPyramid(pyrmid)
 % inputs: pyrmid - R x C x L; R x C is the size of the input image; L is the number of levels in the pyramid.
 
 
-% test
+%test
 % load('GaussianPyramid.mat');
 % pyrmid = GaussianPyramid;
 % load('DoGPyramid.mat');

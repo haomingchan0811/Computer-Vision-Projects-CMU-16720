@@ -25,6 +25,21 @@ function [locsDoG, GaussianPyramid] = DoGdetector(im, sigma0, k, ...
 %
 %   GaussianPyramid A matrix of grayscale images of size (size(im),numel(levels))
 
+GaussianPyramid = createGaussianPyramid(im, sigma0, k, levels);
+
+[DoGPyramid, DoGLevels] = createDoGPyramid(GaussianPyramid, levels);
+
+PrincipalCurvature = computePrincipalCurvature(DoGPyramid);
+
+locsDoG = getLocalExtrema(DoGPyramid, DoGLevels, PrincipalCurvature, th_contrast, th_r)
+
+% plot the detected keypoints
+im = rgb2gray(im2double(im));
+imshow(im);
+hold on
+[X, Y] = deal(locsDoG(:,1), locsDoG(:,2));
+plot(X, Y, '.g', 'MarkerSize', 12);
+
 
 end
 
