@@ -32,7 +32,8 @@ for l = 1:L
         for y = 1:H
             
             % filter out as it doesn't qualify the threshold
-            if PrincipalCurvature(y,x,l) > th_r 
+            R = PrincipalCurvature(y,x,l);
+            if R <= 0 || R > th_r 
                 continue;
             end
             

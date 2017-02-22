@@ -11,3 +11,14 @@ function [compareA, compareB] = makeTestPattern(patchWidth, nbits)
 % OUTPUTS
 % compareA and compareB - LINEAR indices into the patchWidth x patchWidth image 
 %                         patch and are each nbits x 1 vectors. 
+
+% % test
+% nbits = 256;
+% patchWidth = 9;
+
+% BRIEF test generation using random sampling
+maxVal =  patchWidth^2;
+compareA = randi(maxVal, nbits, 1);
+compareB = randi(maxVal, nbits, 1);
+
+save('testPattern.mat', 'compareA', 'compareB');

@@ -36,10 +36,9 @@ locsDoG = getLocalExtrema(DoGPyramid, DoGLevels, PrincipalCurvature, th_contrast
 % plot the detected keypoints
 im = rgb2gray(im2double(im));
 imshow(im);
-hold on
+hold('on')
 [X, Y] = deal(locsDoG(:,1), locsDoG(:,2));
 plot(X, Y, '.g', 'MarkerSize', 12);
-
 
 end
 
