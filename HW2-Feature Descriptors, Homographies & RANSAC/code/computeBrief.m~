@@ -50,13 +50,7 @@ for i = 1:4
     if mod(i, 2)   % x-coordinates
         coor{i} = repmat(locs(:,1), 1, 256) + offset;
     else           % y-coordinates
-        coor{i} = repmat(locs(:,2), 1, 256) + offset;
+        
     end
-end
-
-for i = 1:m
-    for j = 1:256
-        if 
-
-
+        
     
