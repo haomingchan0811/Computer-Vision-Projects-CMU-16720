@@ -31,7 +31,7 @@ GaussianPyramid = createGaussianPyramid(im, sigma0, k, levels);
 
 PrincipalCurvature = computePrincipalCurvature(DoGPyramid);
 
-locsDoG = getLocalExtrema(DoGPyramid, DoGLevels, PrincipalCurvature, th_contrast, th_r)
+locsDoG = getLocalExtrema(DoGPyramid, DoGLevels, PrincipalCurvature, th_contrast, th_r);
 
 % plot the detected keypoints
 im = rgb2gray(im2double(im));

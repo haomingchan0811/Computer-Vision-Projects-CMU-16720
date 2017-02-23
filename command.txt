@@ -3,4 +3,9 @@ sigma0 = 1;
 k = sqrt(2);
 levels = [-1, 0, 1, 2, 3, 4];
 [th_r, th_contrast] = deal(12, 0.03);
-DoGdetector(im, sigma0, k, levels, th_contrast, th_r)
+GaussianPyramid = createGaussianPyramid(im, sigma0, k, levels);
+im = rgb2gray(im2double(im));
+[DoGPyramid, DoGLevels] = createDoGPyramid(GaussianPyramid, levels);
+PrincipalCurvature = computePrincipalCurvature(DoGPyramid);
+locsDoG = getLocalExtrema(DoGPyramid, DoGLevels, PrincipalCurvature, th_contrast, th_r)
+[compareA, compareB] = makeTestPattern(9, 256);
