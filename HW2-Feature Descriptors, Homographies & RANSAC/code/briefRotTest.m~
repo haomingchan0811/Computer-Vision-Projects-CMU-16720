@@ -37,5 +37,7 @@ for angle = 0:10:350
 end 
 
 % construct bar graph (rotation angle VS num_matches)
-bar(0:10:350, num_matches, 'c', 'LineWidth', 0.75);
+b = bar(0:10:350, num_matches, 'c', 'LineWidth', 0.75);
+b(2). = 2;
+b(2).EdgeColor = 'red';
 

@@ -22,5 +22,4 @@ I2 = I(1,r < ratio | isnan(r));
 %output
 matches = [ix' I2'];
 
-
 end

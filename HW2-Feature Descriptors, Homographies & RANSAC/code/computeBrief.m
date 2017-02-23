@@ -14,7 +14,7 @@ function [locs,desc] = computeBrief(im, GaussianPyramid, locsDoG, k, ...
 % desc - an m x n bits matrix of stacked BRIEF descriptors. m is the number of 
 %        valid descriptors in the image and will vary
 
-% test
+% % test
 % im = imread('../data/model_chickenbroth.jpg');
 % sigma0 = 1;
 % k = sqrt(2);
@@ -75,6 +75,7 @@ for i = 1:m
 
         l = L(i, 1);  % corresponding level index
         desc(i,j) = GaussianPyramid(Ay,Ax,l) < GaussianPyramid(By,Bx,l);
+%         desc(i,j) = im(Ay,Ax,l) < im(By,Bx,l);
     end
 end
     
