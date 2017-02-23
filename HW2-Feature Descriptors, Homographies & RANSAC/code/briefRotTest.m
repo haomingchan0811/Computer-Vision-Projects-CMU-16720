@@ -41,7 +41,7 @@ end
 % num_matches = rand(1, 36);
 
 % construct bar graph (rotation angle VS num_matches)
-bar(0:10:350, num_matches, 'g', 'width', 1);
+bar(0:10:350, num_matches, 'r');
 xlabel('Degree of rotation');
 ylabel('Number of correct matches');
 
