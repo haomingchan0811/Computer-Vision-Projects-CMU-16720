@@ -15,7 +15,7 @@ function [panoImg] = imageStitching_noClip(img1, img2, H2to1)
 % initialize the dimension of images 
 [H1 W1] = deal(size(img1, 1), size(img1, 2));
 [H2 W2] = deal(size(img2, 1), size(img2, 2));
-[H_out W_out] =deal(800, 1600);
+[H_out W_out] =deal(800, 2400);
 
 % define the corners of img2
 corner = [1 1 1; 1 H2 1; W2 1 1; W2 H2 1];
@@ -28,14 +28,14 @@ dummy = repmat(warp_c(3,:), 3, 1);
 warp_c = warp_c ./ dummy;
 
 % generate matrix M for scaling and translating
-translate_width = min(min(warp_c(1,:)), 1);
-width = max(max(warp_c(1,:)), W1) - translate_width;
+translate_width = round(min(min(warp_c(1,:)), 1));
+width = round(max(max(warp_c(1,:)), W1) - translate_width);
 
-translate_height = min(min(warp_c(2,:)), 1);
-height = max(max(warp_c(2,:)), H1) - translate_height;
+translate_height = round(min(min(warp_c(2,:)), 1));
+height =round(max(max(warp_c(2,:)), H1) - translate_height);
 
 scalar = W_out / width;
-out_size = [round(scalar * height) W_out];
+out_size = [ceil(scalar * height) W_out];
 
 M = [scalar 0 -translate_width; 0 scalar -translate_height; 0 0 1];
 

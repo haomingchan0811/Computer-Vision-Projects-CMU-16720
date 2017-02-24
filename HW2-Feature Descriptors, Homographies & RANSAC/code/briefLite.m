@@ -23,5 +23,6 @@ levels = [-1, 0, 1, 2, 3, 4];
 % compute BRIEF descriptors
 load('testPattern.mat');
 
-end
 [locs,desc] = computeBrief(im, GaussianPyramid, locsDoG, k, levels, compareA, compareB);
+
+end 

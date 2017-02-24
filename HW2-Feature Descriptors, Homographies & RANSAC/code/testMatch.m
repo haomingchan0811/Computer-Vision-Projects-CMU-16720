@@ -7,8 +7,8 @@ function [] = testMatch(im1, im2)
 %
 
 % test
-% im1 = imread('../data/model_chickenbroth.jpg');
-% im2 = imread('../data/chickenbroth_01.jpg');
+im1 = imread('../data/model_chickenbroth.jpg');
+im2 = imread('../data/chickenbroth_01.jpg');
 
 % im1 = imread('../data/incline_L.png');
 % im2 = imread('../data/incline_R.png');
