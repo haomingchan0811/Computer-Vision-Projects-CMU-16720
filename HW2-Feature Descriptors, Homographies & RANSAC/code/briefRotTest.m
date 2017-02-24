@@ -45,4 +45,5 @@ bar(0:10:350, num_matches, 'r');
 xlabel('Degree of rotation');
 ylabel('Number of correct matches');
 
+end
 

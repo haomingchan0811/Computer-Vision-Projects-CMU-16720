@@ -58,4 +58,4 @@ end
 
 H2to1 = computeH(p1(:, bestinliers), p2(:, bestinliers));
 
-save('q6_1.mat', 'H2to1');
+end

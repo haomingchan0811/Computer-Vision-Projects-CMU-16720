@@ -36,3 +36,5 @@ end
 
 % plot the matches 
 plotMatches(im1, im2, matches, locs1, locs2);
+
+end

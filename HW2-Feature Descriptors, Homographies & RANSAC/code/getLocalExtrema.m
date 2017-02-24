@@ -78,3 +78,5 @@ end
 
 % resize the matrix to eliminate all-zero rows
 locsDoG = locsDoG(1:index - 1,:);
+
+end

@@ -33,7 +33,9 @@ for i = 1:L
     
     PrincipalCurvature(:,:,i) = Tr ./ Det;
 end 
-% 
+
 % % test
 % save('PrincipalCurvature.mat');
+
+end 
 

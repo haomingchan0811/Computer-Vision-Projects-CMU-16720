@@ -22,3 +22,5 @@ compareA = randi(maxVal, nbits, 1);
 compareB = randi(maxVal, nbits, 1);
 
 save('testPattern.mat', 'compareA', 'compareB');
+
+end
