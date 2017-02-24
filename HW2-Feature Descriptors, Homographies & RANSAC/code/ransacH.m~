@@ -1,4 +1,4 @@
-function [bestH] = ransacH(matches, locs1, locs2, nIter, tol)
+function [H2to1] = ransacH(matches, locs1, locs2, nIter, tol)
 % INPUTS
 % locs1 and locs2 - matrices specifying point locations in each of the images
 % matches - matrix specifying matches between these two sets of point locations
@@ -18,6 +18,11 @@ if exist('tol', 'var') == 0
     tol = 4;
 end 
 
+% initialize best H matrix
+H2to1 = zeros(3, 3);
+maxInliers = -1;
+bestinliers = zeros(1,1);
+
 % initialize the coordinates of points, 2xN matrix 
 num_matches = size(matches, 1);
 p1 = (locs1(matches(:,1), 1:2))';
@@ -25,24 +30,48 @@ p2 = (locs2(matches(:,2), 1:2))';
 
 % iterative RANDSAC algorithm
 for i = 1:nIter
-    
     % randomly pick four points, 2xN matrix 
-    randIndex = randperm(p, 4);
-    rand1 = (locs(matches(randIndex,1), 1:2))';
-    rand2 = (locs(matches(randIndex,2), 1:2))';
-    
+    randIndex = randperm(num_matches, 4);
+    rand1 = p1(:, randIndex);
+    rand2 = p2(:, randIndex);
     % compute the fitted H matrix 
     H = computeH(rand1, rand2);
-    
+
     % add dummy 1s to p2 and compute the estimated p1s
     p2_dummy = [p2; ones(1, num_matches)];
     p1_est = H * p2_dummy;
-    p1_est = p1_est ./ repmat(p1_est(:,3),3,1);
-    
-    % compute inliners
-    Xdiff = p1(1)
-    
-    
-    
+    p1_est = p1_est ./ repmat(p1_est(3,:),3,1);
+%     p1_est = round(p1_est(1:2,:));
+        
 
-end 
+    warp_errors = sqrt(sum((p1-warp_p2).^2, 1));
+    inliers = warp_errors<tol;
+    numInliers = sum(inliers);
+    
+    if numInliers > maxNumInliers
+        maxNumInliers = numInliers;
+        H2to1 = computeH(p1(:,inliers), p2(:, inliers));
+    end
+end
+%     % compute inliers
+%     Xdiff = (p1(1,:) - p1_est(1,:)).^2;
+%     Ydiff = (p1(2,:) - p1_est(1,:)).^2;
+%     num_inliers = 0;
+%     inliers = zeros(1,1);   % record the inliers
+%     for j = 1:num_matches
+% %         Xdiff(1,j) + Ydiff(1,j)
+%         if Xdiff(1,j) + Ydiff(1,j) < tol^2
+%            num_inliers = num_inliers + 1; 
+%            inliers = [inliers, j];
+%         end
+%     end
+%     % replace the best H matrix
+%     if num_inliers > maxInliers
+%        maxInliers = num_inliers;
+%        bestinliers = inliers(2:end);
+%     end
+% end 
+% 
+% H2to1 = computeH(p1(:, bestinliers), p2(:, bestinliers));
+% 
+% save('q6_1.mat', 'H2to1');

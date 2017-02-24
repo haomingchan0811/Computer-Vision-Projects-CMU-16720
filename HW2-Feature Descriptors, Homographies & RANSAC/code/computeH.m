@@ -17,13 +17,19 @@ p2 = ([p2; ones(1, N)])';
 % contruct matrix A
 A = zeros(2 * N, 9);
 for i = 1:N
-   A(2 * i - 1, :) = [-p2(i,:), zeros(1,3), p1(i,1) * p2(i,:)];   % odd rows of A 
-   A(2 * i, :) = [zeros(1,3), -p2(i,:), p1(i,2) * p2(i,:)];       % even rows of A 
+   A(2 * i - 1, :) = [p2(i,:), 0, 0, 0, -p1(i,1) * p2(i,:)];   % odd rows of A 
+   A(2 * i, :) = [0, 0, 0, p2(i,:), -p1(i,2) * p2(i,:)];       % even rows of A 
 end
 
-% compute eigen values
-[V, D] = eig(A' * A);
+% % compute eigen values
+% [V, D] = eig(A' * A);
+% 
+% % compute Homography matrix
+% H2to1 = reshape(V(:,1), 3, 3);
+% H2to1 = H2to1';
 
-% compute Homography matrix
-H2to1 = reshape(V(:,1), 3, 3);
+[U, S, V] = svd(A' * A);
+H2to1 = reshape(U(:,9),3,3);
 H2to1 = H2to1';
+
+

@@ -1,14 +1,14 @@
 function [] = testMatch(im1, im2)
 
-%% load images and compute feature mathces
+% load images and compute feature mathces
 %
 % INPUTS
 % im1, im2 - images to test feature matches using BRIEF descriptors
 %
 
 % test
-im1 = imread('../data/model_chickenbroth.jpg');
-im2 = imread('../data/chickenbroth_01.jpg');
+% im1 = imread('../data/model_chickenbroth.jpg');
+% im2 = imread('../data/chickenbroth_01.jpg');
 
 % im1 = imread('../data/incline_L.png');
 % im2 = imread('../data/incline_R.png');
@@ -26,7 +26,6 @@ end
 if size(im2, 3) == 3
     im2 = rgb2gray(im2);
 end
-
 
 % compute descriptors for both images
 [locs1, desc1] = briefLite(im1);
