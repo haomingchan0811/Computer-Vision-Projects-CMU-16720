@@ -57,5 +57,5 @@ for i = 1:nIter
 end 
 
 H2to1 = computeH(p1(:, bestinliers), p2(:, bestinliers));
-
+save('../results/q6_1.mat', 'H2to1')
 end

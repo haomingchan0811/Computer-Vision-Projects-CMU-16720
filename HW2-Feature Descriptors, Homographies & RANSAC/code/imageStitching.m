@@ -27,7 +27,7 @@ result2 = warped2 .* mask2_warped;
 
 % visualize the warped image
 % imshow(warped2);
-imwrite(warped2, '../results/6_1.jpg');
+imwrite(warped2, '../results/q6_1.jpg');
 
 % stitch images together to produce panorams
 

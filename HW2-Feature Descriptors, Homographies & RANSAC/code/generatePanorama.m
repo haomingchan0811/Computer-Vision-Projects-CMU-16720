@@ -1,4 +1,4 @@
-function [im3] = generatePanomara(im1, im2)
+function [im3] = generatePanorama(im1, im2)
 %
 % INPUT
 % im1, im2 - a M x N x 3 matrix of RGB images

@@ -21,6 +21,6 @@ maxVal =  patchWidth^2;
 compareA = randi(maxVal, nbits, 1);
 compareB = randi(maxVal, nbits, 1);
 
-save('testPattern.mat', 'compareA', 'compareB');
+save('../results/testPattern.mat', 'compareA', 'compareB');
 
 end

@@ -21,7 +21,7 @@ levels = [-1, 0, 1, 2, 3, 4];
 [locsDoG, GaussianPyramid] = DoGdetector(im, sigma0, k, levels, th_contrast, th_r)
 
 % compute BRIEF descriptors
-load('testPattern.mat');
+load('../results/testPattern.mat');
 
 [locs,desc] = computeBrief(im, GaussianPyramid, locsDoG, k, levels, compareA, compareB);
 
