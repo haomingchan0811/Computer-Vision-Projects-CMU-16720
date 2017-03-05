@@ -14,6 +14,7 @@ template = interp2(It, X, Y);
 
 % pre-compute the inverse Hessian matrix 
 [Fx, Fy] = gradient(template);
+% H = [Fx, Fy]' * [Fx, Fy];
 H = [Fx(:), Fy(:)]' * [Fx(:), Fy(:)];
 
 % iteratively minimize error
