@@ -5,7 +5,7 @@ function [u,v] = LucasKanadeInverseCompositional(It, It1, rect)
 
 % initialize the coordinates and threshold
 [x1 y1 x2 y2] = deal(rect(1), rect(2), rect(3), rect(4));
-[p, threshold] = deal([0; 0], 0.05);
+[p, threshold] = deal([0; 0], 0.01);
 
 % template generation
 [X, Y] = meshgrid(x1: x2, y1: y2);
@@ -20,12 +20,13 @@ H = [Fx(:), Fy(:)]' * [Fx(:), Fy(:)];
 % iteratively minimize error
 converge = false;
 while converge ~= true
-    % update warp
-    warpX = [x1 x2] + p(1);
-    warpY = [y1 y2] + p(2);
-    
-    % compute error image and update p 
-    [X1, Y1] = meshgrid(warpX(1): warpX(2), warpY(1): warpY(2));
+   
+    % warp and compute error image, update p 
+    [X1, Y1] = meshgrid(x1+p(1): x2+p(1), y1+p(2): y2+p(2));
+    corr = [x1+p(1), x2+p(1), y1+p(2), y2+p(2)]
+    sizeX = size(X1)
+    sizeY = size(Y1)
+
     errorImg = interp2(It1, X1, Y1) - template;
     delta = H \ ([Fx(:), Fy(:)]' * errorImg(:));
     p = p - delta;
