@@ -3,9 +3,10 @@ load('../data/usseq.mat')
 [H W T] = size(frames);
 
 % implementation
-rect = [255; 105; 310; 170];
 target = [5 25 50 75 100];
+rect = [255; 105; 310; 170];
 rects = zeros(T, 4);
+rects(1, :) = rect; 
 imgs = cell(1, length(target));
 idx = 1
 

@@ -3,9 +3,10 @@ load('../data/carseq.mat')
 [H W T] = size(frames);
 
 % implementation
-rect = [60; 117; 146; 152];
 target = [2 100 200 300 400];
+rect = [60; 117; 146; 152];
 rects = zeros(T, 4);
+rects(1, :) = rect; 
 imgs = cell(1, length(target));
 idx = 1
 
