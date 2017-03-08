@@ -1,12 +1,13 @@
 % load frames
-load('../data/usseq.mat')
+load('../data/sylvseq.mat')
+load('../data/sylvbases.mat')
 [H W T] = size(frames);
 
 % implementation
-target = [5 25 50 75 100];
-rect = [255; 105; 310; 170];
+target = [2 200 300 350 400];
+rect = [102; 62; 156; 108];
 rects = zeros(T, 4);
-rects(1, :) = rect'; 
+rects(1, :) = rect; 
 imgs = cell(1, length(target));
 frameIdx = zeros(1, length(target));
 timeStamp = zeros(1, length(target));
@@ -17,10 +18,9 @@ startTime = tic;
 for i = 2: T
     % compute u, v vector and update 
     [prev, curr] = deal(frames(:,:,i-1), frames(:,:,i));
-    [u,v] = LucasKanadeInverseCompositional(prev, curr, rect);
+    [u,v] = LucasKanadeBasis(prev, curr, rect);
     rect = rect + [u; v; u; v];
-    rects(i, :) = rect';
-    
+    rects(i, :) = rect;
     % report the frame and rectange if it's the target
     if ~isempty(find(target == i))
         [width height] = deal(rect(3) - rect(1), rect(4) - rect(2));
@@ -41,4 +41,4 @@ for i = 1: length(target)
 end
 
 % save the rects
-save usseqrects.mat rects
+save sylvseqrects.mat rects

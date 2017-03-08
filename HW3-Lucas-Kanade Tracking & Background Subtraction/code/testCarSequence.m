@@ -6,7 +6,7 @@ load('../data/carseq.mat')
 target = [2 100 200 300 400];
 rect = [60; 117; 146; 152];
 rects = zeros(T, 4);
-rects(1, :) = rect; 
+rects(1, :) = rect'; 
 imgs = cell(1, length(target));
 frameIdx = zeros(1, length(target));
 timeStamp = zeros(1, length(target));
@@ -19,7 +19,7 @@ for i = 2: T
     [prev, curr] = deal(frames(:,:,i-1), frames(:,:,i));
     [u,v] = LucasKanadeInverseCompositional(prev, curr, rect);
     rect = rect + [u; v; u; v];
-    rects(i, :) = rect;
+    rects(i, :) = rect';
     % report the frame and rectange if it's the target
     if ~isempty(find(target == i))
         [width height] = deal(rect(3) - rect(1), rect(4) - rect(2));
