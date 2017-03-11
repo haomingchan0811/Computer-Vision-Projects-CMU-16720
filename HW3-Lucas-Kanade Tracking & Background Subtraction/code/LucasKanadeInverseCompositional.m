@@ -34,5 +34,3 @@ end
 [u v] = deal(p(1), p(2));
 
 end
-
-

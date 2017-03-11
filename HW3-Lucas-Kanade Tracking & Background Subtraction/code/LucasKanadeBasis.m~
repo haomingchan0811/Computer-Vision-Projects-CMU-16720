@@ -34,9 +34,9 @@ while converge ~= true
 
     errorImg = interp2(It1, X1, Y1) - template;
     errorImg = errorImg(:);
-    Q = SD' * errorImg - (bases * SD)' * bases * errorImg;
-    delta = H \ Q;
+    Q = SD' * errorImg - 
     
+    delta = H \ ;
     p = p - delta;
     converge = norm(delta) < threshold;
 end 

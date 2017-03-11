@@ -21,6 +21,7 @@ for i = 2: T
     [u,v] = LucasKanadeBasis(prev, curr, rect, bases);
     rect = rect + [u; v; u; v];
     rects(i, :) = rect;
+    
     % report the frame and rectange if it's the target
     if ~isempty(find(target == i))
         [width height] = deal(rect(3) - rect(1), rect(4) - rect(2));
