@@ -1,6 +1,6 @@
 % load frames
-load('../data/sylvseq.mat')
-load('../data/sylvbases.mat')
+load('../data/sylvseq.mat');
+load('../data/sylvbases.mat');
 [H W T] = size(frames);
 
 % implementation

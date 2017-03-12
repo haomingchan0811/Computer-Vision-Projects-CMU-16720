@@ -1,5 +1,5 @@
 % load frames
-load('../data/carseq.mat')
+load('../data/carseq.mat');
 [H W T] = size(frames);
 
 % implementation

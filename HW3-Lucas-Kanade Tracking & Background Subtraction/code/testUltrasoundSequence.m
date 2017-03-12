@@ -1,5 +1,5 @@
 % load frames
-load('../data/usseq.mat')
+load('../data/usseq.mat');
 [H W T] = size(frames);
 
 % implementation
