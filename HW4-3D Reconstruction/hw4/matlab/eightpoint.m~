@@ -12,8 +12,12 @@ function [F] = eightpoint(pts1, pts2, M)
 
 %     Write F and display the output of displayEpipolarF in your writeup
 
-% load data
+% load data in the console
+
 % load('../data/some_corresp.mat');
+% I1 = imread('../data/im1.png');
+% I2 = imread('../data/im2.png');
+% M = max(size(I1, 1), size(I1, 2));
 
 % scale the data to [0,1]
 pts1 = pts1 ./ M;
@@ -42,12 +46,14 @@ F = U1 * S1 * V1';
 refineF(F, pts1, pts2);
 
 % unscale the fundamental matrix
-T = diag([])
-
-% save F, M, pts1, pts2 to q2_1.mat
+T = diag([1 / M, 1 / M, 1]);
+F = T' * F * T;
 
 % display epipolarF
-displayEpipolarF(I1, I2, F);
+% displayEpipolarF(I1, I2, F);
+
+% save F, M, pts1, pts2 to q2_1.mat
+save('../results/q_2.1mat', F, M, pts1, pts2);
 
 end
 

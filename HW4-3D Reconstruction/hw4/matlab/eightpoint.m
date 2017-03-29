@@ -12,8 +12,12 @@ function [F] = eightpoint(pts1, pts2, M)
 
 %     Write F and display the output of displayEpipolarF in your writeup
 
-% load data
-% load('../data/some_corresp.mat');
+% load data in the console
+
+load('../data/some_corresp.mat');
+I1 = imread('../data/im1.png');
+I2 = imread('../data/im2.png');
+M = max(size(I1, 1), size(I1, 2));
 
 % scale the data to [0,1]
 pts1 = pts1 ./ M;
@@ -46,10 +50,10 @@ T = diag([1 / M, 1 / M, 1]);
 F = T' * F * T;
 
 % display epipolarF
-% displayEpipolarF(I1, I2, F);
+displayEpipolarF(I1, I2, F);
 
 % save F, M, pts1, pts2 to q2_1.mat
-save('../results/q_2.1mat', F, M, pts1, pts2);
+save('../results/q_2.1mat', 'F', 'M', 'pts1', 'pts2');
 
 end
 
