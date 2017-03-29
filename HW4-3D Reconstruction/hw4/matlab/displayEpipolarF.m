@@ -14,7 +14,6 @@ function displayEpipolarF(I1, I2, F)
 %
 % Modified 2003, Andrew Stein (Altered display -- one figure instead of 
 %  two -- and added directions.  The math is all the same.)
-%
 
 [e1 e2] = epipoles(F);
 

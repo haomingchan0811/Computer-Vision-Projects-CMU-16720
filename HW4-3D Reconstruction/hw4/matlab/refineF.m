@@ -3,6 +3,7 @@
 % pts1 and pts2 are Nx2 matrices, first row of pts1 being
 % x coordinate from first image, second row of pts1 being 
 % y coordinate from first image
+
 function F = refineF(F,pts1,pts2)
 
 X=[pts1(:,1) pts2(:,1)];

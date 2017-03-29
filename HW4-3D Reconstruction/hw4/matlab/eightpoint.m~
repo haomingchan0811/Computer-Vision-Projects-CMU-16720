@@ -42,14 +42,12 @@ F = U1 * S1 * V1';
 refineF(F, pts1, pts2);
 
 % unscale the fundamental matrix
-T = diag([1 / M, 1 / M, 1]);
-F = T' * F * T;
-
-% display epipolarF
-% displayEpipolarF(I1, I2, F);
+T = diag([])
 
 % save F, M, pts1, pts2 to q2_1.mat
-save('../results/q_2.1mat', F, M, pts1, pts2);
+
+% display epipolarF
+displayEpipolarF(I1, I2, F);
 
 end
 
