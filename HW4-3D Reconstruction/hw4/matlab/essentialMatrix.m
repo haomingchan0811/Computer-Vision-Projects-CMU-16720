@@ -1,4 +1,5 @@
-function [ E ] = essentialMatrix( F, K1, K2 )
+function [E] = essentialMatrix(F, K1, K2)
+
 % essentialMatrix:
 %    F - Fundamental Matrix
 %    K1 - Camera Matrix 1
@@ -9,6 +10,7 @@ function [ E ] = essentialMatrix( F, K1, K2 )
 %
 %       Write the computed essential matrix in your writeup
 
+E = K2' * F * K1;
 
 end
 
