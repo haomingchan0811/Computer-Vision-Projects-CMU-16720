@@ -46,7 +46,8 @@ F = U1 * S1 * V1';
 refineF(F, pts1, pts2);
 
 % unscale the fundamental matrix
-T = diag([1 / M, 1 / M, 1]);
+T = eye(3) / M;
+T(3, 3) = 1;
 F = T' * F * T;
 
 % display epipolarF
