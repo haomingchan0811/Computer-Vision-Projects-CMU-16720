@@ -50,8 +50,8 @@ T = eye(3) / M;
 T(3, 3) = 1;
 F = T' * F * T;
 
-% display epipolarF
-displayEpipolarF(I1, I2, F);
+% % display epipolarF
+% displayEpipolarF(I1, I2, F);
 
 % save F, M, pts1, pts2 to q2_1.mat
 save('../results/q_2.1mat', 'F', 'M', 'pts1', 'pts2');
