@@ -54,7 +54,7 @@ F = T' * F * T;
 % displayEpipolarF(I1, I2, F);
 
 % save F, M, pts1, pts2 to q2_1.mat
-save('../results/q_2.1mat', 'F', 'M', 'pts1', 'pts2');
+save('../results/q_2.1.mat', 'F', 'M', 'pts1', 'pts2');
 
 end
 

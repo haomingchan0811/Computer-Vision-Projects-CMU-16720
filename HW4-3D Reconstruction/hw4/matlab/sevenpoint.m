@@ -71,7 +71,7 @@ end
 % displayEpipolarF(I1, I2, F{3});
 
 % save F, M, pts1, pts2 to q2_2.mat
-save('../results/q_2.2mat', 'F', 'M', 'pts1', 'pts2');
+save('../results/q_2.2.mat', 'F', 'M', 'pts1', 'pts2');
 
 end
 
