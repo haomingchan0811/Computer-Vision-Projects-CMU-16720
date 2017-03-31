@@ -19,30 +19,30 @@ function [x2, y2] = epipolarCorrespondence(im1, im2, F, x1, y1)
     function [patch] = computePatch(img, x, y, window)
         boundry_x = (x - window): (x + window);
         boundry_y = (y - window): (y + window);
-        patch = img(boundry_x, boundry_y)';
+        patch = img(boundry_y, boundry_x);
     end 
 
     % find the valid point sets for later search 
-    function [X, Y] = pointSet(X1, Y1, X2, Y2, winSize, ratio, H, W)
+    function [X, Y] = pointSet(X1, Y1, X2, Y2, offset, ratio, H, W)
         [X, Y] = deal(X1, Y1);      % initialize point sets
         if ratio > 1
             [X, Y] = deal(X2, Y2); 
         end 
-        withBoundary = (X - winSize) > 0 & (X + winSize) <= W & ...
-                       (Y - winSize) > 0 & (Y + winSize) <= H;
+        withBoundary = (X - offset) > 0 & (X + offset) <= W & ...
+                       (Y - offset) > 0 & (Y + offset) <= H;
         [X, Y] = deal(X(withBoundary), Y(withBoundary)); 
     end
 
 % initialize parameters
-im1 = imread('../data/im1.png');
-im2 = imread('../data/im2.png');
+% im1 = imread('../data/im1.png');
+% im2 = imread('../data/im2.png');
 
 [im1, im2] = deal(double(im1), double(im2));
-[x1, y1] = deal(round(x1), round(y1));
+[x1, y1] = deal(ceil(x1), ceil(y1));
 [x2, y2] = deal(0, 0);   % initialize P2
 [H, W] = deal(size(im1, 1), size(im1, 2));
 
-winSize = 15;    % the window size of the patch around a possible point
+winSize = 7;    % the window size of the patch around a possible point
 winOffset = (winSize - 1) / 2;
 sigma = 3;
 minError = Inf;
@@ -50,14 +50,14 @@ minError = Inf;
 % convert to homogeneous coord & compute epipolar line
 p1 = [x1, y1, 1]';  
 epiLine = F * p1;
-patch_im1 = computePatch(im1, x1, y1, winSize);
+patch_im1 = computePatch(im1, x1, y1, winOffset);
 
 % find search grids
 [Y1, X2] = deal(1:H, 1:W);
 X1 = ceil(-(epiLine(2) * Y1 + epiLine(3)) / epiLine(1));
 Y2 = ceil(-(epiLine(1) * X2 + epiLine(3)) / epiLine(2));
 ratio = epiLine(1) / epiLine(2);
-[X, Y] = pointSet(X1, Y1, X2, Y2, winSize, ratio, H, W);
+[X, Y] = pointSet(X1, Y1, X2, Y2, winOffset, ratio, H, W);
 
 % filter out points that are too far away
 thres = 250;    % sqaure distance threshold from p1 
@@ -68,22 +68,22 @@ num_points = size(X, 2);
 % guassian weighting of the window
 w = fspecial('gaussian', [winSize winSize], sigma);
 
-patch_im2 = computePatch(im2, X(5), Y(5), winSize);
-diff = (patch_im2 - patch_im1).^2;
-size*()
-error = sum(diff .* w)
+%compute Euclidean distance between pixel intensities
+for i = 1:num_points
+   patch_im2 = computePatch(im2, X(i), Y(i), winOffset);
+   diff = (patch_im2 - patch_im1).^2;
+   error = sum(sum(diff .* w));
+   if error < minError
+       minError = error;
+       [x2, y2] = deal(X(i), Y(i));
+   end 
+end
 
-% compute Euclidean distance between pixel intensities
-% for i = 1:num_points
-%    patch_im2 = computePatch(im2, X(i), Y(i), winSize);
-%    diff = (patch_im2 - patch_im1).^2;
-%    error = sum(diff .* w)
-%  
-% end
-
+% % test correspondence
+% epipolarMatchGUI(im1, im2, F);
 
 % save F, M, pts1, pts2 to q2_6.mat
-save('../results/q_2.6mat', 'F', 'pts1', 'pts2');
+% save('../results/q_2.6.mat', 'F', 'pts1', 'pts2');
 
 end
 
