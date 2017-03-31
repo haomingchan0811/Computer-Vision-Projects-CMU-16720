@@ -83,7 +83,7 @@ end
 % epipolarMatchGUI(im1, im2, F);
 
 % save F, M, pts1, pts2 to q2_6.mat
-% save('../results/q_2.6.mat', 'F', 'pts1', 'pts2');
+% save('q2_6.mat', 'F', 'pts1', 'pts2');
 
 end
 

@@ -36,4 +36,4 @@ for i = 1: 4
     end   
 end 
 
-save('../results/q_2.5.mat', 'M2', 'p1', 'p2', 'P')
+save('q2_5.mat', 'M2', 'p1', 'p2', 'P');

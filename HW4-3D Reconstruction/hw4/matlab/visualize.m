@@ -49,4 +49,4 @@ end
 [X, Y, Z] = deal(P(:,1), P(:,2), P(:,3));
 scatter3(X, Y, Z);
 
-save('../results/q_2.7.mat', 'M2', 'M1', 'M2')
+save('q2_7.mat', 'M1', 'M2')

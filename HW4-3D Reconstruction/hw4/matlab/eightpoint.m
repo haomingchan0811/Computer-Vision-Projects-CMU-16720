@@ -14,14 +14,14 @@ function [F] = eightpoint(pts1, pts2, M)
 
 % load data in the console
 
-load('../data/some_corresp.mat');
-I1 = imread('../data/im1.png');
-I2 = imread('../data/im2.png');
-M = max(size(I1, 1), size(I1, 2));
+% load('../data/some_corresp.mat');
+% I1 = imread('../data/im1.png');
+% I2 = imread('../data/im2.png');
+% M = max(size(I1, 1), size(I1, 2));
 
 % scale the data to [0,1]
-pts1 = pts1 ./ M;
-pts2 = pts2 ./ M;
+pts1 = pts1 / M;
+pts2 = pts2 / M;
 
 % initialize corrdinates
 numOfPoints = size(pts1, 1);
@@ -45,16 +45,18 @@ F = U1 * S1 * V1';
 % redine the solution using local minimization
 refineF(F, pts1, pts2);
 
-% unscale the fundamental matrix
+% unscale the fundamental matrix and points 
 T = eye(3) / M;
 T(3, 3) = 1;
 F = T' * F * T;
+pts1 = pts1 * M;
+pts2 = pts2 * M;
 
 % % display epipolarF
 % displayEpipolarF(I1, I2, F);
 
 % save F, M, pts1, pts2 to q2_1.mat
-save('../results/q_2.1.mat', 'F', 'M', 'pts1', 'pts2');
+% save('q2_1.mat', 'F', 'M', 'pts1', 'pts2');
 
 end
 

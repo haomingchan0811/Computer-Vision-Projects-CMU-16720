@@ -18,13 +18,13 @@ I2 = imread('../data/im2.png');
 M = max(size(I1, 1), size(I1, 2));
 
 % cpselect(I1, I2);   % select points manually
-% save('../data/q_2.2_corresp.mat', 'pts1', 'pts2');
+% save('../data/q2_2_corresp.mat', 'pts1', 'pts2');
 
-% load('../data/q_2.2_corresp.mat');
+% load('../data/q2_2_corresp.mat');
 
 % scale the data to [0,1]
-pts1 = pts1 ./ M;
-pts2 = pts2 ./ M;
+pts1 = pts1 / M;
+pts2 = pts2 / M;
 
 % initialize corrdinates
 numOfPoints = size(pts1, 1);
@@ -62,17 +62,19 @@ for i = 1: size_alpha
    F{i} = alpha(i) * F1 + (1 - alpha(i)) * F2;
 end
 
-% unscale the fundamental matrix
+% unscale the fundamental matrix and points 
 for i = 1: size_alpha
    F{i} = T' * F{i} * T;
 end
+pts1 = pts1 * M;
+pts2 = pts2 * M;
 
 % display epipolarF
-F{1}
-displayEpipolarF(I1, I2, F{1});
+% F{3}
+% displayEpipolarF(I1, I2, F{3});
 
 % save F, M, pts1, pts2 to q2_2.mat
-save('../results/q_2.2.mat', 'F', 'M', 'pts1', 'pts2');
+% save('q2_2.mat', 'F', 'M', 'pts1', 'pts2');
 
 end
 
