@@ -13,9 +13,9 @@ function [F] = sevenpoint(pts1, pts2, M)
 
 % load data in the console
 
-% I1 = imread('../data/im1.png');
-% I2 = imread('../data/im2.png');
-% M = max(size(I1, 1), size(I1, 2));
+I1 = imread('../data/im1.png');
+I2 = imread('../data/im2.png');
+M = max(size(I1, 1), size(I1, 2));
 
 % cpselect(I1, I2);   % select points manually
 % save('../data/q_2.2_corresp.mat', 'pts1', 'pts2');
@@ -41,6 +41,7 @@ F1_stacked = V(:, 9);  % the stacked matrix
 F2_stacked = V(:, 8);  % the stacked matrix
 F1 = reshape(F1_stacked, [3 3]);
 F2 = reshape(F2_stacked, [3 3]);
+[F1, F2] = deal(F1', F2');
 
 % solve equation: Det(alpha * F1 + (1 - alpha) * F2) = 0
 syms w;    % create symbolic variable for the equation
@@ -67,8 +68,8 @@ for i = 1: size_alpha
 end
 
 % display epipolarF
-% F{3}
-% displayEpipolarF(I1, I2, F{3});
+F{1}
+displayEpipolarF(I1, I2, F{1});
 
 % save F, M, pts1, pts2 to q2_2.mat
 save('../results/q_2.2.mat', 'F', 'M', 'pts1', 'pts2');

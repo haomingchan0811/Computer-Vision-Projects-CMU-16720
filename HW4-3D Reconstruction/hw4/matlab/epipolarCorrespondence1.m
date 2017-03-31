@@ -1,4 +1,4 @@
-function [x2, y2] = epipolarCorrespondence(im1, im2, F, x1, y1)
+function [x2, y2] = epipolarCorrespondence1(im1, im2, F, x1, y1)
 
 % epipolarCorrespondence:
 %       im1 - Image 1
@@ -19,7 +19,7 @@ function [x2, y2] = epipolarCorrespondence(im1, im2, F, x1, y1)
     function [patch] = computePatch(img, x, y, window)
         boundry_x = (x - window): (x + window);
         boundry_y = (y - window): (y + window);
-        patch = img(boundry_x, boundry_y)';
+        patch = img(boundry_y, boundry_x);
     end 
 
     % find the valid point sets for later search 
@@ -34,11 +34,11 @@ function [x2, y2] = epipolarCorrespondence(im1, im2, F, x1, y1)
     end
 
 % initialize parameters
-im1 = imread('../data/im1.png');
-im2 = imread('../data/im2.png');
+% im1 = imread('../data/im1.png');
+% im2 = imread('../data/im2.png');
 
 [im1, im2] = deal(double(im1), double(im2));
-[x1, y1] = deal(round(x1), round(y1));
+[x1, y1] = deal(ceil(x1), ceil(y1));
 [x2, y2] = deal(0, 0);   % initialize P2
 [H, W] = deal(size(im1, 1), size(im1, 2));
 

@@ -24,20 +24,22 @@ for i = 1: num_points
     [p2x, p2y] = deal(p2(i, 1), p2(i, 2));
     
     % generate AP = 0
-    A = [p1x * c13 - c11, ... 
-         p1y * c13 - c12, ...
-         p2x * c23 - c21, ...
+    A = [p1x * c13 - c11; ... 
+         p1y * c13 - c12; ...
+         p2x * c23 - c21; ...
          p2y * c23 - c22];
     
     % singular value decomposition to compute P
     [U, S, V] = svd(A);
     v = V(:, 4);  % last column
-    P(i, :) = v(1:3)' / v(4);  
+    P(i, :) = v(1:3)' ./ v(4);  
 end 
+
 
 % homogenous coordinates of 3D points
 ONES = ones(1, num_points);
-P_h = [P'; ONES];   
+P_h = [P'; ONES];
+
 
 % projection to 2D points
 p1_proj = C1 * P_h;

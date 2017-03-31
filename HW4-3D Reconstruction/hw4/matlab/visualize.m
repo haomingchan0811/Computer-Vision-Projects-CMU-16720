@@ -22,7 +22,7 @@ P = zeros(size(pts1, 1), 3);        % initialize 3D points
 % compute cooresponding points in image2
 [x2, y2] = deal(zeros(size(x1)), zeros(size(y1)));
 for i = 1: num_points
-    [x2(i), y2(i)] = epipolarCorrespondence(I1, I2, F, x1(i), y1(i));
+    [x2(i), y2(i)] = epipolarCorrespondence1(I1, I2, F, x1(i), y1(i));
 end
 
 % compute the 4 candidates of M2s 
@@ -34,6 +34,7 @@ C1 = K1 * M1;               % first camera matrix
 % select the correct M2
 for i = 1: 4
     C2 = K2 * M2s(:,:,i);   % second camera matrix
+    [pts1, pts2] = deal([x1, y1], [x2, y2]);   % forming points
     [p, ~] = triangulate(C1, pts1, C2, pts2);
     
     % Find the correct M2 by ensuring all 3D points in front of camera
