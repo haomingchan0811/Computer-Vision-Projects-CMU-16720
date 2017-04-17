@@ -30,20 +30,11 @@ figure; hold on
 title('Accuracy over epochs')
 xlabel('Number of Epoch')
 ylabel('Accuracy')
-a1 = plot(1:num_epoch, Train_Accuracy'); 
-a2 = plot(1:num_epoch, Valid_Accuracy'); 
-legend([a1; a2], ['Training  '; 'Validation']);
+a1 = plot(1:num_epoch, Train_Accuracy'); M1 = ;
+a2 = plot(1:num_epoch, Valid_Accuracy'); M2 = 'Validate';
+legend([a1; a2], ['Train'; M2]);
 saveas(gcf,'Q3.1.1_accuracy_VS_epoch.png')
 
-% plot the accuracy and loss of each epoch
-figure; hold on
-title('Loss over epochs')
-xlabel('Number of Epoch')
-ylabel('Loss')
-a1 = plot(1:num_epoch, Train_Loss'); 
-a2 = plot(1:num_epoch, Valid_Loss'); 
-legend([a1; a2], ['Training  '; 'Validation']);
-saveas(gcf,'Q3.1.1_loss_VS_epoch.png')
 
 
 

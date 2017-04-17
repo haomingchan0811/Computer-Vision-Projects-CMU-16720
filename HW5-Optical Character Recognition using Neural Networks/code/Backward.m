@@ -8,6 +8,15 @@ function [grad_W, grad_b] = Backward(W, b, X, Y, act_h, act_a)
 %   - 'act_h' and 'act_a' the network layer pre and post activations when forward
 %     forward propogating the input smaple 'X'
 
+% retrieve parameters
+num_class = length(Y);  
+num_data = length(X);
 
+% initialize gradients for weights and biases
+size = length(W);
+grad_W = cell(size, 1);
+grad_b = cell(size, 1);
+
+% compute the derivative of weights and biases
 
 end

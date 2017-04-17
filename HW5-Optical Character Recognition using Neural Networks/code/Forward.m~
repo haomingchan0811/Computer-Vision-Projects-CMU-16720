@@ -32,5 +32,4 @@ Y = act_a{size};               % pre-activation of the final layer
 sumOfExp = sum(exp(Y)); 
 output = exp(Y) / sumOfExp;    % softmax output (C x 1)
 act_h{size} = output;
-
 end
