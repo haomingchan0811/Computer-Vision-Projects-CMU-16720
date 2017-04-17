@@ -4,5 +4,17 @@ function [outputs] = Classify(W, b, data)
 % data samples, and N is the dimensionality of the input data. This function
 % should return a vector of size DxC of network softmax output probabilities.
 
+% initialize parameters
+C = size(W{length(W)}, 2);   % number of classes
+num_data = size(data, 1);
+outputs = zeros(num_data, C);
+
+% iteratively compute softmax for each data point
+for i = 1:num_data
+    X = data(i, :)';
+    % perform forward propagation: softmax output (C x 1)
+    [output, ~, ~] = Forward(W, b, X);   
+    outputs(i, :) = output';
+end
 
 end
