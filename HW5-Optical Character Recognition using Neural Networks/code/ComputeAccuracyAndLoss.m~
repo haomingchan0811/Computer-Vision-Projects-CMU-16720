@@ -23,8 +23,10 @@ for i = 1:num_data
    if label(index) == 1
        correct = correct + 1;
    end 
-      
-   crossEntropy = -log(sum(predict .* label));
+   
+   label(index), index
+   
+   crossEntropy = -log(sum(predict .* labels));
    loss = loss + crossEntropy;  
 end
 

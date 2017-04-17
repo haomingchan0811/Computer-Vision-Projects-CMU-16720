@@ -5,9 +5,9 @@ function [outputs] = Classify(W, b, data)
 % should return a vector of size DxC of network softmax output probabilities.
 
 % initialize parameters
-C = size(W{length(W)}, 2);   % number of classes
+num_class = size(W{length(W)}, 2);  
 num_data = size(data, 1);
-outputs = zeros(num_data, C);
+outputs = zeros(num_data, num_class);
 
 % iteratively compute softmax for each data point
 for i = 1:num_data
