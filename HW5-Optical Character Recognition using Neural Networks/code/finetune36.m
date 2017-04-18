@@ -47,7 +47,7 @@ ylabel('Accuracy')
 a1 = plot(1:num_epoch, Train_Accuracy'); 
 a2 = plot(1:num_epoch, Valid_Accuracy'); 
 legend([a1; a2], ['Training  '; 'Validation']);
-saveas(gcf,sprintf('Q3.1.1_accuracy_VS_epoch_%.4f.png', learning_rate))
+saveas(gcf, 'Q3.2.1_accuracy_VS_epoch_%.4f.png');
 
 % plot the accuracy and loss of each epoch
 figure; hold on
@@ -57,7 +57,7 @@ ylabel('Loss')
 a1 = plot(1:num_epoch, Train_Loss'); 
 a2 = plot(1:num_epoch, Valid_Loss'); 
 legend([a1; a2], ['Training  '; 'Validation']);
-saveas(gcf,sprintf('Q3.1.1_loss_VS_epoch_%.4f.png', learning_rate))
+saveas(gcf, 'Q3.2.1_loss_VS_epoch.png');
 
 
 
