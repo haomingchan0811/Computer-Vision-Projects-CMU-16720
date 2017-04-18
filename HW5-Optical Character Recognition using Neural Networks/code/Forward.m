@@ -8,12 +8,12 @@ function [output, act_h, act_a] = Forward(W, b, X)
 % pre activations in 'act_a'.
 
 % retrieve parameters
-size = length(W);
+sizeL = length(W);
 input = X;   % initialize input (N X 1)
 
 % initialize intermediate matrices
-act_a = cell(size, 1);
-act_h = cell(size, 1);
+act_a = cell(sizeL, 1);
+act_h = cell(sizeL, 1);
 
     % sigmoid function for a vector (K x 1)
     function [h] = sigmoid(M)
@@ -21,16 +21,16 @@ act_h = cell(size, 1);
     end 
 
 % forward propogation
-for i = 1:size
+for i = 1:sizeL
     act_a{i} = W{i}' * input + b{i}';   % pre-activation: (K x 1)
     act_h{i} = sigmoid(act_a{i});       % post-activation
     input = act_h{i};  % update input for next layer
 end
 
 % softmax for classification
-Y = act_a{size};               % pre-activation of the final layer
+Y = act_a{sizeL};               % pre-activation of the final layer
 sumOfExp = sum(exp(Y)); 
-output = exp(Y) / sumOfExp;    % softmax output (C x 1)
-act_h{size} = output;
+output = exp(Y) / sumOfExp;     % softmax output (C x 1)
+act_h{sizeL} = output;
 
 end

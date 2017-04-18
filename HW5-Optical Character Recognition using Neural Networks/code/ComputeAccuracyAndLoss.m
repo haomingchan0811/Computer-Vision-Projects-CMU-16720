@@ -30,6 +30,5 @@ end
 
 % averaging the results
 accuracy = correct / num_data;
-loss = loss / num_data;
 
 end

@@ -11,15 +11,15 @@ N = layers(1);               % size of input layer (data)
 C = layers(length(layers));  % size of output layer (classes)
 
 % initialize weights and biases
-size = numOfHidden + 1;
-W = cell(size, 1);
-b = cell(size, 1);
+sizeL = numOfHidden + 1;
+W = cell(sizeL, 1);
+b = cell(sizeL, 1);
 
 dim_prevL = N;
-for i = 1:size
+for i = 1:sizeL
     dim_currL = layers(i + 1);    % dimension of current layer
     b{i} = zeros(1, dim_currL);   % initialize biases to all 0
-    W{i} = rand(dim_prevL, dim_currL) ./ sqrt(dim_prevL);  % initialize weights to random value close to 0
+    W{i} = 0.01 * rand(dim_prevL, dim_currL) ./ sqrt(dim_prevL);  % initialize weights to random value close to 0
     dim_prevL = dim_currL;    % update layer size
 end
 

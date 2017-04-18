@@ -8,9 +8,8 @@ function [W, b] = Train(W, b, train_data, train_label, learning_rate)
 % Feel free to use it or discard it
 
 % retrieve parameters
-num_class = length(train_label, 2);  
+num_class = size(train_label, 2);  
 num_data = size(train_data,1);
-size = length(W);
 
 % shuffle the training data randomly
 order = randperm(num_data)';
