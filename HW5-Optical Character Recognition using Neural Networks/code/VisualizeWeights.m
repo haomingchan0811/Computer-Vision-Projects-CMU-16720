@@ -42,9 +42,9 @@
 
 % -------------------- Confusion Plot ----------------------
 
-% % visualize the confusion matrix for Q3.1
-% load('nist26_model.mat')
-% load('../data/nist26_test.mat', 'test_data', 'test_labels')
+% visualize the confusion matrix for Q3.1
+load('nist26_model.mat')
+load('../data/nist26_test.mat', 'test_data', 'test_labels')
 
 
 % visualize the confusion matrix for Q3.2
@@ -53,9 +53,17 @@ load('../data/nist36_test.mat', 'test_data', 'test_labels');
 
 % plot confusion matrix 
 [outputs] = Classify(W, b, test_data);
-outputs = outputs';
-targets = test_labels';
-plotconfusion(targets, outputs);
+num_data = size(outputs, 1);
+num_class = size(outputs, 2);
+confusion = zeros(num_class, num_class);
+for i = 1:num_data
+    [~, label] = max(test_labels(i, :));  
+    [~, predict] = max(outputs(i, :));  
+    confusion(label, predict) = confusion(label, predict) + 1;
+end 
 
-
+confusion = mat2gray(confusion);
+confusion = imresize(confusion, 10, 'nearest');
+imshow(confusion);
+saveas(gcf, sprintf('confusionMatrix%d.png', num_class));
 
