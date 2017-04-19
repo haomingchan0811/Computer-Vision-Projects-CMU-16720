@@ -1,4 +1,4 @@
-num_epoch = 10;
+num_epoch = 5;
 classes = 36;  % 26 letters + 10 digits
 learning_rate = 0.01;
 
@@ -16,7 +16,8 @@ end
 
 % add 10 more weights and biases to the output layer
 dim_prevL = size(W{num}, 1);
-temp = 0.01 * rand(dim_prevL, 10) ./ sqrt(dim_prevL);
+% temp = 0.01 * rand(dim_prevL, 10) ./ sqrt(dim_prevL);
+temp = 0.01 * rand(dim_prevL, 10);
 W{num} = horzcat(W{num}, temp);
 b{num} = horzcat(b{num}, zeros(1, 10));
 

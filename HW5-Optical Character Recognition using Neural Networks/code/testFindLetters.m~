@@ -1,8 +1,0 @@
-% test
-im = imread('../images/02_letters.jpg');
-im = imread('../images/01_list.jpg');
-im = imread('../images/03_haiku.jpg');
-im = imread('../images/04_deep.jpg');
-
-[width, height] = deal(x2 - x1, y1 - y2);
-img = insertShape(curr,'Rectangle',[rect(1), rect(2), width, height],'LineWidth',5);

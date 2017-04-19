@@ -20,9 +20,9 @@ im = rgb2gray(im);
 
 bw = imcomplement(imbinarize(im));
 % bw = medfilt2(bw);
+bw_clear = imdilate(bw, strel('disk', 2));
 bw = imdilate(bw, strel('disk', 5));
-% bw_clear = imdilate(bw, strel('disk', 2));
-bw_clear = imbinarize(im_gaussain);
+% bw_clear = imbinarize(im_gaussain);
 
 imgSize = size(bw);
 
@@ -100,7 +100,7 @@ while 1
 end 
 
 lines = lines(1:index - 1);
-bw = bw_clear;
+bw = ~bw_clear;
 % imshow(bw);
 
 end
