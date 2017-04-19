@@ -60,7 +60,7 @@ end
 % perform classification
 load('nist36_model.mat');
 % load('nist36_model_old.mat');
-load('nist36_model_new.mat');
+% load('nist36_model_new.mat');
 [outputs] = Classify(W, b, data);
 letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
 text = '';
@@ -79,13 +79,7 @@ for i = 1:num_data
         end
     end
 end
-% space
-sprintf(text);
 
-% test
-fname = '../images/01_list.jpg';
-fname = '../images/04_deep.jpg';
-fname = '../images/03_haiku.jpg';
-fname = '../images/02_letters.jpg';
+sprintf(text);
 
 end
