@@ -2,7 +2,7 @@
 im = imread('../images/02_letters.jpg');
 % im = imread('../images/01_list.jpg');
 % im = imread('../images/03_haiku.jpg');
-im = imread('../images/04_deep.jpg');
+% im = imread('../images/04_deep.jpg');
 
 [lines, bw] = findLetters(im);
 for i = 1:length(lines)

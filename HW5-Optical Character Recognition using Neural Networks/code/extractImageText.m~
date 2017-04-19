@@ -34,7 +34,7 @@ for i = 1:length(lines)
         end
         img = ~imresize(img, [32 32]);
         % imshow(img);
-        data(index, :) = img(:)';
+        data(index, :) = img(:);
     end
     linebreak(linebreak_ind) = index;
     linebreak_ind = linebreak_ind + 1;
@@ -43,15 +43,15 @@ end
 % perform classification
 load('nist36_model.mat');
 [outputs] = Classify(W, b, data);
-letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
+letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 text = '';
 for i = 1:num_data
     predict = outputs(i, :);
-    imshow(mat2gray(reshape(data(i, :), [32,32])));
+    imshow()
     [~, ind] = max(predict);
-    text = strcat(text, letters(ind));
+    text = strcat(text, letters(ind))
     if ~isempty(find(linebreak == i))
-        text = [text, sprintf('\n')];
+        text = [text, '\n'];
     end
 end
 

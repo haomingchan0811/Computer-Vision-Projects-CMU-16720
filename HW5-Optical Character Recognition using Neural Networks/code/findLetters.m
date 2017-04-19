@@ -15,11 +15,15 @@ function [lines, bw] = findLetters(im)
 % im = imread('../images/04_deep.jpg');
 
 % binarize the image with white background
-% im = rgb2gray(imgaussfilt(im, 3));
+im_gaussain = rgb2gray(imgaussfilt(im, 3));
 im = rgb2gray(im);
+
 bw = imcomplement(imbinarize(im));
 % bw = medfilt2(bw);
 bw = imdilate(bw, strel('disk', 5));
+% bw_clear = imdilate(bw, strel('disk', 2));
+bw_clear = imbinarize(im_gaussain);
+
 imgSize = size(bw);
 
 % find connected components 
@@ -91,11 +95,12 @@ while 1
 %         imshow(bw(obj(2):obj(4), obj(1):obj(3)));
 %         saveas(gcf, sprintf('line%d_%d.jpg', index, j));
 %     end
+
     objects(qualify, :) = [];
 end 
 
 lines = lines(1:index - 1);
-bw = ~bw;
+bw = bw_clear;
 % imshow(bw);
 
 end

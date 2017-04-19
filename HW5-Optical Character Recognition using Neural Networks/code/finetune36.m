@@ -1,4 +1,4 @@
-num_epoch = 5;
+num_epoch = 10;
 classes = 36;  % 26 letters + 10 digits
 learning_rate = 0.01;
 
